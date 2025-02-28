@@ -1,0 +1,102 @@
+# Função Ar Connect (Use na página 90%)
+def autoArConnect(codigo):
+    
+    time.sleep(2)
+
+    # Clica no botão filtro.
+    pygui.click(x=137, y=194, button="left")
+    time.sleep(1)
+
+    # Clica no TextField.
+    pygui.click(x=550, y=440, button="left")
+    time.sleep(1)
+
+    # Seleciona todo o texto.
+    pygui.hotkey("ctrl", "a")
+    time.sleep(0.5)  # Espera um pouco para garantir a seleção
+
+    # Escreve o código.
+    pygui.write(str(codigo))  # Garante que o código seja uma string
+    time.sleep(0.5)  # Espera um pouco após escrever
+
+    # Clica em pesquisar.
+    pygui.click(x=853, y=536, button="left")
+    time.sleep(4)  # Espera a página carregar
+
+    # Seleciona editar informação.
+    pygui.click(x=1279, y=244, button="left")
+    time.sleep(5)
+
+    # Seleciona o campo "Tipo Movimentação" ou "PENDENTE" para saber se deve ou não scrollar a página.
+    pygui.click(x=96, y=322, button="left")
+    # Seleciona o texto.
+    pygui.hotkey("ctrl", "a")
+    time.sleep(0.5)
+    # Copia o texto.
+    pygui.hotkey("ctrl", "c")
+    time.sleep(0.5)
+
+    pendente = pyperclip.paste()
+    
+    # Verifica se há o status pendente.
+    if pendente == pendenteString:
+
+       
+        pygui.press("down")
+        pygui.press("down")
+        pygui.press("down")
+        pygui.press("down")
+
+        # Seleciona o texto da "Unidade".
+        pygui.click(x=95, y=708, button="left")
+        time.sleep(0.5)
+        # Seleciona o texto.
+        pygui.hotkey("ctrl", "a")
+        time.sleep(0.5)
+        # Copia o texto.
+        pygui.hotkey("ctrl", "c")
+        time.sleep(0.5)
+
+        pygui.press("up")
+        pygui.press("up")
+        pygui.press("up")
+        pygui.press("up")
+        
+    else: 
+        # Seleciona o texto da "Unidade".
+        pygui.click(x=158, y=701, button="left")
+        time.sleep(0.5)
+        # Seleciona o texto.
+        pygui.hotkey("ctrl", "a")
+        time.sleep(0.5)
+        # Copia o texto.
+        pygui.hotkey("ctrl", "c")
+        time.sleep(0.5)
+
+    # Valor da unidade.
+    unidade = pyperclip.paste()
+
+    # Verifica se há "analitica" na string para procurar o nome do parceiro.
+    if analiticaString.search(unidade):
+
+        # Clica no campo "Parceiro indicador".
+        pygui.click(x = 109, y = 544, button="left")
+        time.sleep(0.5)
+        # Seleciona o texto.
+        pygui.hotkey("ctrl", "a")
+        time.sleep(0.5)
+        # Copia o texto.
+        pygui.hotkey("ctrl", "c")
+        time.sleep(0.5)
+        # Valor da unidade.
+        unidade = pyperclip.paste()
+
+
+    # Clica em voltar.
+    pygui.click(x=1316, y=150, button="left")
+    time.sleep(3)
+    #print(unidade)
+
+    return str(unidade)
+
+#autoArConnect("72698144")
